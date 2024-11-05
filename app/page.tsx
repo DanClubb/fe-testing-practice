@@ -3,6 +3,7 @@
 import { useState } from "react";
 import AddTask from "./_components/AddTask";
 import Progress from "./_components/Progress";
+import Task from "./_components/Task";
 
 export default function Page() {
     const [tasks, setTasks] = useState([
@@ -19,10 +20,17 @@ export default function Page() {
         setTasks([...tasks, newTask]);
     };
 
+    const handleDeleteTask = (id: number) => {
+        setTasks(tasks.filter((t) => t.id !== id));
+    };
+
     return (
         <>
             <Progress tasks={tasks} />
             <AddTask tasks={tasks} onAddTask={handleAddTask} />
+            {tasks.map((task) => (
+                <Task task={task} onDeleteTask={handleDeleteTask} />
+            ))}
         </>
     );
 }
