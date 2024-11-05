@@ -1,8 +1,9 @@
 type TaskProps = {
     task: { id: number; title: string; completed: boolean };
+    onDeleteTask: (id: number) => void;
 };
 
-function Task({ task }: TaskProps) {
+function Task({ task, onDeleteTask }: TaskProps) {
     return (
         <div className="flex justify-between items-center border border-orange-200 p-4">
             <div className="flex items-center gap-4">
@@ -17,7 +18,7 @@ function Task({ task }: TaskProps) {
                 </h2>
             </div>
             <div>
-                <button>
+                <button onClick={() => onDeleteTask(task.id)}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
