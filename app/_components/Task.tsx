@@ -1,24 +1,32 @@
 type TaskProps = {
     task: { id: number; title: string; completed: boolean };
     onDeleteTask: (id: number) => void;
+    onStatusChange: (id: number) => void;
 };
 
-function Task({ task, onDeleteTask }: TaskProps) {
+function Task({ task, onDeleteTask, onStatusChange }: TaskProps) {
     return (
         <div className="flex justify-between items-center border border-orange-200 p-4">
             <div className="flex items-center gap-4">
-                <p
+                <button
                     className={`border border-green-500 ${
                         task.completed ? "bg-green-500" : ""
                     } w-6 h-6 rounded-full`}
+                    onClick={() => {
+                        onStatusChange(task.id);
+                        console.log("here");
+                    }}
                     data-testid="status"
-                ></p>
+                ></button>
                 <h2 className={`${task.completed ? "line-through" : ""}`}>
                     {task.title}
                 </h2>
             </div>
             <div>
-                <button onClick={() => onDeleteTask(task.id)}>
+                <button
+                    onClick={() => onDeleteTask(task.id)}
+                    data-testid="delte-btn"
+                >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

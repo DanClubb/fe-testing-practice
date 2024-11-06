@@ -7,7 +7,7 @@ import Task from "./_components/Task";
 
 export default function Page() {
     const [tasks, setTasks] = useState([
-        { id: 1, title: "Task 1", completed: true },
+        { id: 1, title: "Task 1", completed: false },
         { id: 2, title: "Task 2", completed: true },
         { id: 3, title: "Task 3", completed: false },
     ]);
@@ -24,12 +24,29 @@ export default function Page() {
         setTasks(tasks.filter((t) => t.id !== id));
     };
 
+    const handleStatusChange = (id: number) => {
+        setTasks((prev) => {
+            const tasks = prev.map((task) => {
+                if (task.id === id) {
+                    return { ...task, completed: !task.completed };
+                }
+                return task;
+            });
+            return tasks;
+        });
+    };
+
     return (
         <>
             <Progress tasks={tasks} />
             <AddTask tasks={tasks} onAddTask={handleAddTask} />
             {tasks.map((task) => (
-                <Task task={task} onDeleteTask={handleDeleteTask} />
+                <Task
+                    task={task}
+                    onDeleteTask={handleDeleteTask}
+                    onStatusChange={handleStatusChange}
+                    key={task.id}
+                />
             ))}
         </>
     );
