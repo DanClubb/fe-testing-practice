@@ -53,7 +53,7 @@ describe("", () => {
         expect(title).toHaveClass("line-through");
     });
 
-    it("delete button correctly removes task", () => {
+    it("delete button correctly calls delete function", () => {
         const deleteBtn = screen.getByTestId("delte-btn");
 
         fireEvent.click(deleteBtn);
