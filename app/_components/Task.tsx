@@ -6,7 +6,10 @@ type TaskProps = {
 
 function Task({ task, onDeleteTask, onStatusChange }: TaskProps) {
     return (
-        <div className="flex justify-between items-center border border-orange-200 p-4">
+        <div
+            id="task"
+            className="flex justify-between items-center border border-orange-200 p-4"
+        >
             <div className="flex items-center gap-4">
                 <button
                     className={`border border-green-500 ${

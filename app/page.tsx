@@ -5,12 +5,10 @@ import AddTask from "./_components/AddTask";
 import Progress from "./_components/Progress";
 import Task from "./_components/Task";
 
+type Task = { id: number; title: string; completed: boolean };
+
 export default function Page() {
-    const [tasks, setTasks] = useState([
-        { id: 1, title: "Task 1", completed: false },
-        { id: 2, title: "Task 2", completed: true },
-        { id: 3, title: "Task 3", completed: false },
-    ]);
+    const [tasks, setTasks] = useState<Task[]>([]);
 
     const handleAddTask = (newTask: {
         id: number;
